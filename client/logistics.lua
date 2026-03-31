@@ -59,7 +59,7 @@ CreateThread(function()
     while not HasModelLoaded(model) do Wait(0) end
 
   local ped = CreatePed(4, model, Config.Peds.Logistics.coords.x, Config.Peds.Logistics.coords.y,
-        Config.Peds.Logistics.coords.z - 1.0, Config.Peds.Logistics.coords.w, false, false)
+        Config.Peds.Logistics.coords.z, Config.Peds.Logistics.coords.w, false, false)
     
     SetEntityAsMissionEntity(ped, true, true)
     SetBlockingOfNonTemporaryEvents(ped, true)

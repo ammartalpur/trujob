@@ -1,6 +1,7 @@
 local function DebugPrint(msg)
   if Config.Debug then print("^3[Trucker-Client]^7 " .. tostring(msg)) end
 end
+local Bridge = exports['community_bridge']:Bridge()
 
 -- =========================
 -- DEALER PED + UI OPEN
@@ -13,7 +14,7 @@ CreateThread(function()
   local dealerPed = CreatePed(4, pedConfig.model,
     pedConfig.coords.x,
     pedConfig.coords.y,
-    pedConfig.coords.z - 1.0,
+    pedConfig.coords.z,
     pedConfig.coords.w,
     false,
     false
@@ -24,7 +25,7 @@ CreateThread(function()
   FreezeEntityPosition(dealerPed, true)
   SetEntityInvincible(dealerPed, true)
 
-  exports.ox_target:addLocalEntity(dealerPed, {
+  Bridge.Target.AddLocalEntity(dealerPed, {
     {
       name = 'truck_dealer_menu',
       label = 'Talk to Dealer',
@@ -106,7 +107,7 @@ RegisterNetEvent('trucker:client:enterTruck', function(netId, plate)
   SetPedIntoVehicle(ped, vehicle, -1)
 
   -- Notify
-  exports.qbx_core:Notify("Truck ready & keys received!", "success")
+  Bridge.Notify.SendNotification("Truck Job","Truck ready & keys received!", "success")
 end)
 
 RegisterNetEvent('vehiclekeys:client:SetOwner', function(plate)
@@ -154,8 +155,8 @@ RegisterCommand('dvi', function()
       DeleteEntity(vehicle)
     end
 
-    exports.qbx_core:Notify("Vehicle deleted", "success")
+    Bridge.Notify.SendNotification("Truck Job", "Vehicle deleted", "success")
   else
-    exports.qbx_core:Notify("No vehicle nearby", "error")
+    Bridge.Notify.SendNotification("Truck Job", "No vehicle nearby", "error")
   end
 end, false)
