@@ -1,0 +1,92 @@
+.dealer-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.dealer-container {
+  width: 900px;
+  height: 600px;
+  background: #121212;
+  border: 2px solid #ff9800; /* Trucker Orange */
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  background: #1a1a1a;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+header h1 { color: #ff9800; margin: 0; letter-spacing: 2px; }
+
+nav button {
+  background: none;
+  border: none;
+  color: #888;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+nav button.active { color: #fff; border-bottom: 2px solid #ff9800; }
+
+.truck-grid {
+  flex: 1;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.truck-card {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  padding: 15px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.truck-img-placeholder {
+  height: 100px;
+  background: #2a2a2a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.action-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.buy { background: #ff9800; color: #000; }
+.spawn { background: #4caf50; color: #fff; }
+
+.close-btn {
+  background: #b71c1c;
+  border: none;
+  color: white;
+  padding: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
