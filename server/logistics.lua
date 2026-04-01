@@ -2,6 +2,7 @@ local function DebugPrint(msg)
   if Config.Debug then print("^3[Trucker-Logictics-Server]^7 " .. tostring(msg)) end
 end
 
+
 local ActiveTrailers = {}
 local ActiveMissions = {}
 

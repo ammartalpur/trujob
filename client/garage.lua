@@ -62,7 +62,8 @@ CreateThread(function()
 
 
 
-          if IsControlJustReleased(0, 38) then
+                    if IsControlJustReleased(0, 38) then
+            DebugPrint(" E key pressed")
             local plate = GetVehicleNumberPlateText(veh)
 
             -- Use a local variable to check the state

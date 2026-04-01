@@ -1,10 +1,11 @@
 
-
+local Bridge = exports['community_bridge']:Bridge()
 local function DebugPrint(msg)
   if Config.Debug then print("^3[Garage-Server]^7 " .. tostring(msg)) end
 end
 
 RegisterNetEvent('trucker:server:storeVehicle', function(plate, vitals)
+  DebugPrint(" trucker:server:storeVehicle running")
   local src = source
   local player = Bridge.Framework.GetPlayer(src)
   if not player then return end

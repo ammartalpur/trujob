@@ -2,6 +2,8 @@ local function DebugPrint(msg)
   if Config.Debug then print("^3[Trucker-Server]^7 " .. tostring(msg)) end
 end
 
+local Bridge = exports['community_bridge']:Bridge()
+
 local function GeneratePlate()
   return "TRK" .. math.random(100, 999) .. string.upper(string.char(math.random(65, 90)))
 end
@@ -11,7 +13,7 @@ local SpawnLocks = {}
 
 RegisterNetEvent('trucker:server:getMyTrucks', function()
   local src = source
-  local player = exports.qbx_core:GetPlayer(src)
+  local player = Bridge.Framework.GetPlayer(src)
 
   if not player then return end
 
@@ -25,7 +27,7 @@ end)
 
 RegisterNetEvent("trucker:server:purchaseTruck", function(truckData)
   local src = source
-  local player = exports.qbx_core:GetPlayer(src)
+  local player = Bridge.Framework.GetPlayer(src)
 
   if not player then return end
 
