@@ -4,13 +4,19 @@ local function DebugPrint(msg)
   if Config.Debug then print("^3[Garage-Server]^7 " .. tostring(msg)) end
 end
 
+local function getCitizenId(src)
+    local cid = Bridge.Framework.GetPlayerIdentifier(src)
+    return cid
+end
+
 RegisterNetEvent('trucker:server:storeVehicle', function(plate, vitals)
   DebugPrint(" trucker:server:storeVehicle running")
   local src = source
   local player = Bridge.Framework.GetPlayer(src)
   if not player then return end
 
-  local citizenid = player.PlayerData.citizenid
+  local citizenid = getCitizenId(src)
+
 
  
   exports.oxmysql:update([[

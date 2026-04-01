@@ -28,3 +28,5 @@ function debugPrint(...)
   local finalMsg = msgTemplate:format(currentResourceName, appendStr)
   print(finalMsg)
 end
+
+
