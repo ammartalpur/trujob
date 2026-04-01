@@ -161,7 +161,7 @@ RegisterNetEvent('trucker:server:completeContract', function(routeId, trailerNet
   local payout = route.payout
   player.Functions.AddMoney('bank', payout, "trucker-job")
 
-  exports.qbx_core:Notify(src, "Received $" .. payout .. " for delivery.", "success")
+  Bridge.Notify.SendNotification(src, "Truck Job", "Received $" .. payout .. " for delivery.", "success")
 
 
   ActiveMissions[src] = nil

@@ -34,14 +34,14 @@ RegisterNetEvent('trucker:server:storeVehicle', function(plate, vitals)
 
    
       if deleted then
-        exports.qbx_core:Notify(src, "Truck safely stored in garage.", "success")
+        Bridge.Notify.SendNotification(src, "Truck Job" , "Truck safely stored in garage.", "success")
 
         TriggerEvent('trucker:server:getMyTrucks', src)
       else
-        exports.qbx_core:Notify(src, "Truck stored in DB, but entity was not found.", "warning")
+        Bridge.Notify.SendNotification(src, "Truck Job", "Truck stored in DB, but entity was not found.", "warning")
       end
     else
-      exports.qbx_core:Notify(src, "Failed to store: Vehicle not found in your records.", "error")
+      Bridge.Notify.SendNotification(src, "Truck Job", "Failed to store: Vehicle not found in your records.", "error")
     end
   end)
 end)

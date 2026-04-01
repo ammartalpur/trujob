@@ -34,7 +34,7 @@ RegisterNetEvent("trucker:server:purchaseTruck", function(truckData)
   local label = truckData.label
 
   if player.PlayerData.money['cash'] < price then
-    exports.qbx_core:Notify(src, "You cannot afford this truck.", "error")
+    Bridge.Notify.SendNotification(src, "Truck Job", "You cannot afford this truck.", "error")
     return
   end
 

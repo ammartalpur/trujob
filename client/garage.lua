@@ -1,5 +1,5 @@
 -- client/garage.lua
-
+local Bridge = exports['community_bridge']:Bridge()
 local function DebugPrint(msg)
   if Config.Debug then print("^3[Garage-Client]^7 " .. tostring(msg)) end
 end
@@ -84,9 +84,9 @@ CreateThread(function()
             else
               -- If it's null, we give a specific error
               if not ownerId then
-                exports.qbx_core:Notify("This vehicle has no registered owner state!", "error")
+                Bridge.Notify.SendNotification("Truck Job", "This vehicle has no registered owner state!", "error")
               else
-                exports.qbx_core:Notify("You don't own this vehicle!", "error")
+                Bridge.Notify.SendNotification("Truck Job", "You don't own this vehicle!", "error")
               end
             end
           end

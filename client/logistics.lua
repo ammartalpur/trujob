@@ -2,7 +2,7 @@ local function DebugPrint(msg)
   if Config.Debug then print("^3[Trucker-Logictics-Client]^7 " .. tostring(msg)) end
 end
 
-
+local Bridge = exports['community_bridge']:Bridge()
 local curretMission = {}
 
 function startMission(route)
@@ -15,7 +15,7 @@ function startMission(route)
   -- ✅ REGISTER MISSION ON SERVER
   TriggerServerEvent('trucker:server:startMission', route.id)
   DebugPrint("Mission started (sent to server): " .. route.id)
-  exports.qbx_core:Notify("Contract Accepted: Drive to the pickup point.", "success")
+  Bridge.Notify.SendNotification("Truck Job","Contract Accepted: Drive to the pickup point.", "success")
 
   local pickupBlip = AddBlipForCoord(route.pickup.x, route.pickup.y, route.pickup.z)
   SetBlipSprite(pickupBlip, 479)   -- Trailer icon
@@ -66,7 +66,7 @@ CreateThread(function()
     FreezeEntityPosition(ped, true)
   SetEntityInvincible(ped , true)
 
-  exports.ox_target:addLocalEntity(ped, {
+  Bridge.Target.AddLocalEntity(ped, {
     {
       name = 'trucker_logistics',
       label = 'Talk to Logistics Manager',
@@ -83,13 +83,13 @@ CreateThread(function()
 function OpenMissionMenu()
 
     if not curretMission then
-        exports.qbx_core:Notify("you already have an active contract", "error")
+    Bridge.Notify.SendNotification("Truck Job", "you already have an active contract", "error")
         return
     end
       
   local playerVeh = GetVehiclePedIsIn(PlayerPedId(), false)
   if playerVeh == 0 then
-    exports.qbx_core:Notify("Bring your truck here to receive a contract.", "error")
+    Bridge.Notify.SendNotification("Truck Job", "Bring your truck here to receive a contract.", "error")
     return
   end
 
@@ -202,11 +202,11 @@ function FinishMission(route)
     TriggerServerEvent('trucker:server:completeContract', route.id, networkId)
 
     currentMission = nil
-    exports.qbx_core:Notify("Delivery successful! Processing payment...", "success")
+    Bridge.Notify.SendNotification("Truck Job","Delivery successful! Processing payment...", "success")
   else
     DebugPrint("❌ No trailer attached at finish")
 
-    exports.qbx_core:Notify("No trailer attached to truck!", "error")
+    Bridge.Notify.SendNotification("Truck Job","No trailer attached to truck!", "error")
   end
 end
 
@@ -219,8 +219,8 @@ RegisterCommand('canceljob', function()
     if pickupBlip then RemoveBlip(pickupBlip) end
     if deliveryBlip then RemoveBlip(deliveryBlip) end
 
-    exports.qbx_core:Notify("Active contract has been force-cancelled.", "warning")
+    Bridge.Notify.SendNotification("Truck Job", "Active contract has been force-cancelled.", "warning")
   else
-    exports.qbx_core:Notify("You don't have an active contract to cancel.", "error")
+    Bridge.Notify.SendNotification("Truck Job", "You don't have an active contract to cancel.", "error")
   end
 end, false)
