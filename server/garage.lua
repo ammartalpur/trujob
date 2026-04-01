@@ -6,7 +6,7 @@ end
 
 RegisterNetEvent('trucker:server:storeVehicle', function(plate, vitals)
   local src = source
-  local player = exports.qbx_core:GetPlayer(src)
+  local player = Bridge.Framework.GetPlayer(src)
   if not player then return end
 
   local citizenid = player.PlayerData.citizenid
