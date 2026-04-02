@@ -160,8 +160,8 @@ RegisterNetEvent('trucker:server:completeContract', function(routeId, trailerNet
 
  
   local payout = route.payout
-  player.Functions.AddMoney('bank', payout, "trucker-job")
 
+  Bridge.Framework.AddAccountBalance(src , 'bank' , payout)
   Bridge.Notify.SendNotification(src, "Truck Job", "Received $" .. payout .. " for delivery.", "success")
 
 

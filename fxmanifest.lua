@@ -16,7 +16,7 @@ client_script "client/**/*"
 server_script "server/**/*"
 
 shared_scripts {
-  '@ox_lib/init.lua',
+ 
   'config.lua'
 }
 
@@ -26,6 +26,5 @@ files {
 }
 
 dependencies {
-  'ox_lib',
-  'qbx_core'
+ 'community_bridge'
 }

@@ -1,8 +1,9 @@
+local Bridge = exports['community_bridge']:Bridge()
+
 local function DebugPrint(msg)
   if Config.Debug then print("^3[Trucker-Server]^7 " .. tostring(msg)) end
 end
 
-local Bridge = exports['community_bridge']:Bridge()
 
 local function GeneratePlate()
   return "TRK" .. math.random(100, 999) .. string.upper(string.char(math.random(65, 90)))
@@ -33,16 +34,17 @@ RegisterNetEvent("trucker:server:purchaseTruck", function(truckData)
 
   local price = truckData.price
   local model = truckData.model
-  local label = truckData.label
-
-  if player.PlayerData.money['cash'] < price then
+    local label = truckData.label
+  
+  local balance = Bridge.Framework.GetAccountBalance(src, 'bank')
+  if balance < price then
     Bridge.Notify.SendNotification(src, "Truck Job", "You cannot afford this truck.", "error")
     return
   end
 
   local plate = GeneratePlate()
 
-  local success = player.Functions.RemoveMoney('cash', price, "Truck Purchase")
+  local success = Bridge.Framework.RemoveAccountBalance(src, 'cash', price)
   if not success then return end
 
 
